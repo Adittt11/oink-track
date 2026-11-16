@@ -1,0 +1,22 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# JavaScript dependencies and build output
+frontend/node_modules/
+frontend/dist/
+
+# Local video data can be large or private
+testing_dataset/*
+!testing_dataset/.gitkeep
+
+# Training checkpoints are represented by backend/best.pt
+pig/**/weights/*.pt
+pig/**/weights/*.onnx
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,9 @@
+# ByteTrack yang lebih "sabar" untuk babi: track bertahan lebih lama saat tertutup.
+# Dipakai kalau jumlah babi TIDAK diisi (--pigs 0):  --tracker bytetrack_pig.yaml
+tracker_type: bytetrack
+track_high_thresh: 0.30
+track_low_thresh: 0.10
+new_track_thresh: 0.50
+track_buffer: 150        # (bawaan 30) frame track ditahan saat hilang
+match_thresh: 0.85
+fuse_score: true
