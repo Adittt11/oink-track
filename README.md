@@ -18,9 +18,9 @@ cd ..
 ./run_dashboard.sh
 ```
 
-Script tersebut menjalankan FastAPI dan UI React sekaligus, dengan video `testing_dataset/testing1.MP4`. Untuk mencoba video lain, berikan path sebagai argumen, misalnya `./run_dashboard.sh testing_dataset/video_lain.mp4` atau `./run_dashboard.sh "/path/lengkap/video lain.mp4"`. Buka UI di `http://127.0.0.1:5173`; dokumentasi API ada di `http://127.0.0.1:8000/docs`.
+Script tersebut menjalankan FastAPI dan UI React sekaligus, dengan video `testing_dataset/testing1.MP4`. Untuk mencoba video lain, berikan path sebagai argumen, misalnya `./run_dashboard.sh testing_dataset/video_lain.mp4` atau `./run_dashboard.sh "/path/lengkap/video lain.mp4"`. Buka UI di `http://127.0.0.1:5173`; dokumentasi API ada di `http://127.0.0.1:8001/docs`.
 
-Frontend berada di folder `frontend/`. Saat pengembangan, Vite meneruskan `/api`, `/health`, dan `/stream` ke FastAPI pada port 8000.
+Frontend berada di folder `frontend/`. Saat pengembangan, Vite meneruskan `/api`, `/health`, dan `/stream` ke FastAPI pada port 8001. Jika port tersebut juga terpakai, jalankan dengan `BACKEND_PORT=8010 ./run_dashboard.sh testing_dataset/testing5.MP4`.
 
 Buka `http://127.0.0.1:8000`. Pemeriksaan status tersedia di `/health`.
 

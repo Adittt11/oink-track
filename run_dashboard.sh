@@ -7,6 +7,7 @@ if [[ "$VIDEO_PATH" != /* ]]; then
   VIDEO_PATH="$PROJECT_DIR/$VIDEO_PATH"
 fi
 PYTHON_BIN="$PROJECT_DIR/.venv/bin/python"
+BACKEND_PORT="${BACKEND_PORT:-8001}"
 
 if [[ ! -f "$VIDEO_PATH" ]]; then
   echo "Video tidak ditemukan: $VIDEO_PATH" >&2
@@ -23,9 +24,9 @@ if [[ ! -d "$PROJECT_DIR/frontend/node_modules" ]]; then
 fi
 
 cd "$PROJECT_DIR"
-CAMERAS="cam0=$VIDEO_PATH" "$PYTHON_BIN" -m uvicorn backend.app:app --host 127.0.0.1 --port 8000 &
+CAMERAS="cam0=$VIDEO_PATH" "$PYTHON_BIN" -m uvicorn backend.app:app --host 127.0.0.1 --port "$BACKEND_PORT" &
 BACKEND_PID=$!
-(cd "$PROJECT_DIR/frontend" && npm run dev -- --host 127.0.0.1) &
+(cd "$PROJECT_DIR/frontend" && VITE_BACKEND_URL="http://127.0.0.1:$BACKEND_PORT" npm run dev -- --host 127.0.0.1) &
 FRONTEND_PID=$!
 
 cleanup() {
@@ -34,5 +35,5 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 echo "PigWatch React: http://127.0.0.1:5173"
-echo "FastAPI docs:   http://127.0.0.1:8000/docs"
+echo "FastAPI docs:   http://127.0.0.1:$BACKEND_PORT/docs"
 wait "$FRONTEND_PID"
